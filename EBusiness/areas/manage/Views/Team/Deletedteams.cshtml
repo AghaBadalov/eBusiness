@@ -1,0 +1,51 @@
+﻿@model List<Team>
+@{
+    int counter = 0;
+}
+<table class="table">
+    <thead>
+        
+
+        <tr>
+            <th scope="col">count</th>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+
+            <th scope="col">Profession</th>
+            <th scope="col">IG</th>
+            <th scope="col">TT</th>
+            <th scope="col">Fb</th>
+            <th scope="col">Image</th>
+            <th scope="col">Actions</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            counter++;
+            <tr>
+                <th scope="row">@counter</th>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Profession.Name</td>
+                <td>@item.IGUrl</td>
+                <td>@item.TTUrl</td>
+                <td>@item.FBUrl</td>
+                <td>
+                    <img style="max-width:100px" src="~/uploads/teams/@item.ImageUrl" alt="">
+                </td>
+                <td>
+                    
+                    <a asp-action="delete" asp-controller="team" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    <a asp-action="Restore" asp-controller="team" asp-route-id="@item.Id" class="btn btn-success">Repair</a>
+
+                </td>
+
+
+            </tr>
+        }
+
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+﻿@model Team
+
+<form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"> Name</label>
+        <input asp-for="Name" class="form-control">
+        <span asp-validation-for="Name"></span>
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="Profession" class="form-label">PRofession</label>
+        <select asp-for="ProfessionId" asp-items="@(new SelectList(ViewBag.Professions,"Id","Name"))" ></select>
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="IGUrl" class="form-label">Instagram</label>
+        <input asp-for="IGUrl" class="form-control">
+        <span asp-validation-for="IGUrl"></span>
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="FBUrl" class="form-label">Facebook</label>
+        <input asp-for="FBUrl" class="form-control">
+        <span asp-validation-for="FBUrl"></span>
+
+    </div><div class="mb-3">
+        <label asp-for="TTUrl" class="form-label">TTUrl</label>
+        <input asp-for="TTUrl" class="form-control">
+        <span asp-validation-for="Name"></span>
+
+    </div><div class="mb-3">
+        <label asp-for="ImageFile" class="form-label">ImageFile</label>
+        <input asp-for="ImageFile" class="form-control">
+        <span asp-validation-for="ImageFile"></span>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

@@ -1,0 +1,12 @@
+﻿@model Profession
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Profession NAme</label>
+        <input asp-for="Name" class="form-control">
+        <span asp-validation-for="Name"></span>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

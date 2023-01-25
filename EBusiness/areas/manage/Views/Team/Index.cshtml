@@ -1,0 +1,69 @@
+﻿@using EBusiness.Helpers
+@model PaginatedList<Team>
+@{
+    int counter = 0;
+}
+<table class="table">
+    <thead>
+        <a asp-action="create" asp-controller="team" class="btn btn-success">Create</a>
+
+        <tr>
+            <th scope="col">count</th>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+
+            <th scope="col">Profession</th>
+            <th scope="col">IG</th>
+            <th scope="col">TT</th>
+            <th scope="col">Fb</th>
+            <th scope="col">Image</th>
+            <th scope="col">Actions</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            counter++;
+            <tr>
+                <th scope="row">@counter</th>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Profession.Name</td>
+                <td>@item.IGUrl</td>
+                <td>@item.TTUrl</td>
+                <td>@item.FBUrl</td>
+                <td>
+                    <img style="max-width:100px" src="~/uploads/teams/@item.ImageUrl" alt="">
+                </td>
+                <td>
+                    <a asp-action="update" asp-controller="team" asp-route-id="@item.Id" class="btn btn-primary">Update</a>
+                    <a asp-action="softdelete" asp-controller="team" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+<div>
+    <form method="post">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                @if(Model.HasPrevious){
+                    <li class="page-item"><a class="page-link" asp-action="index" asp-route-page="@Model.ActivePage-1" tabindex="-1">Previous</a></li>
+                }
+                @for (int i = 1; i <= Model.TotalPageCount; i++)
+                {
+                    <li class="page-item  @(Model.ActivePage==i ? "active" : "") "><a class="page-link" asp-action="index" asp-route-page="@i">@i</a></li>
+                }
+                
+                @if(Model.HasNext){
+                    <li class="page-item"><a class="page-link" asp-action="index" asp-route-page="@Model.ActivePage+1">Next  </a></li>
+                }
+            </ul>
+        </nav>
+    </form>
+</div>
